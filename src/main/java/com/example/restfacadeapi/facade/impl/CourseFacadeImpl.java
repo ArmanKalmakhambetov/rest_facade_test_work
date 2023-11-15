@@ -20,6 +20,7 @@ public class CourseFacadeImpl implements CourseFacade {
         this.courseService = courseService;
     }
 
+
     @Override
     public List<CourseDTO> getAllCourses() {
         return courseService.getAllCourses().stream()

@@ -18,6 +18,7 @@ public class StudentServiceImpl implements StudentService {
         this.studentRepository = studentRepository;
     }
 
+
     @Override
     @Transactional(readOnly = true)
     public List<Student> getAllStudents() {
@@ -40,11 +41,5 @@ public class StudentServiceImpl implements StudentService {
     @Transactional
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
-    }
-
-    @Override
-    @Transactional
-    public void deleteStudentsByCourseId(Long id) {
-        studentRepository.deleteStudentsByCourseId(id);
     }
 }

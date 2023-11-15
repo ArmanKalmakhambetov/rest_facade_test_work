@@ -33,12 +33,20 @@ public class StudentRestControllerTest {
     public void saveStudent_shouldReturn200() {
         String requestBody = """
                 {
-                "firstName": "Arman",
-                "lastName": "Kalmakhambetov",
-                "email": "ara@mail.ru",
-                "course": {
-                    "nameOfCourse": "Math2"
-                    }
+                    "firstName": "Arman",
+                    "lastName": "Kalmakhambetov",
+                    "email": "ara@mail.ru",
+                    "coursesDTO": [
+                        {
+                            "nameOfCourse": "Math2"
+                        },
+                        {
+                            "nameOfCourse": "Mathematics"
+                        },
+                        {
+                            "nameOfCourse": "Physics"
+                        }
+                    ]
                 }
                 """;
         given()
@@ -53,7 +61,7 @@ public class StudentRestControllerTest {
 
     @Test
     public void deleteStudent_shouldReturn200() {
-        Long studentId = 1L;
+        Long studentId = 3L;
         given()
                 .pathParam("id", studentId)
                 .when()

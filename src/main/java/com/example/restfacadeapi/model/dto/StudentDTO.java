@@ -1,10 +1,10 @@
 package com.example.restfacadeapi.model.dto;
 
-import com.example.restfacadeapi.model.entity.Course;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,8 +19,7 @@ public class StudentDTO {
 
     private String email;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Course course;
+    private List<CourseDTO> coursesDTO;
 
     public Long getId() {
         return id;
@@ -54,13 +53,11 @@ public class StudentDTO {
         this.email = email;
     }
 
-    public Course getCourse() {
-        return course;
+    public List<CourseDTO> getCoursesDTO() {
+        return coursesDTO;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCoursesDTO(List<CourseDTO> coursesDTO) {
+        this.coursesDTO = coursesDTO;
     }
-
-
 }

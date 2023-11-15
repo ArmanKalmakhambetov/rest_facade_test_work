@@ -3,7 +3,6 @@ package com.example.restfacadeapi.service.impl;
 import com.example.restfacadeapi.model.entity.Course;
 import com.example.restfacadeapi.repo.CourseRepo;
 import com.example.restfacadeapi.service.abstracts.CourseService;
-import com.example.restfacadeapi.service.abstracts.StudentService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,12 +13,11 @@ import java.util.Optional;
 public class CourseServiceImpl implements CourseService {
 
     private final CourseRepo courseRepository;
-    private final StudentService studentService;
 
-    public CourseServiceImpl(CourseRepo courseRepository, StudentService studentService) {
+    public CourseServiceImpl(CourseRepo courseRepository) {
         this.courseRepository = courseRepository;
-        this.studentService = studentService;
     }
+
 
     @Override
     @Transactional(readOnly = true)
@@ -42,9 +40,13 @@ public class CourseServiceImpl implements CourseService {
     @Override
     @Transactional
     public void deleteCourse(Long id) {
-        studentService.deleteStudentsByCourseId(id);
         courseRepository.deleteById(id);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Course> findByNameOfCourse(String name) {
+        return Optional.ofNullable(courseRepository.findByNameOfCourse(name));
+    }
 
 }

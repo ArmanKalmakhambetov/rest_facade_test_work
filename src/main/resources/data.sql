@@ -1,12 +1,18 @@
-INSERT INTO courses (name_of_course) VALUES
-                                                  ('Mathematics 101'),
-                                                  ('History 202'),
-                                                  ('Computer Science 301'),
-                                                  ('English Literature 201');
+-- Добавление тестовых данных для таблицы students
+INSERT INTO students (first_name, last_name, email)
+VALUES ('John', 'Doe', 'john.doe@example.com'),
+       ('Jane', 'Smith', 'jane.smith@example.com'),
+       ('Bob', 'Johnson', 'bob.johnson@example.com');
 
+-- Добавление тестовых данных для таблицы courses
+INSERT INTO courses (name_of_course)
+VALUES ('Computer Science'),
+       ('Mathematics'),
+       ('Physics');
 
-INSERT INTO students (first_name, last_name, email, course_id) VALUES
-                                                                   ('John', 'Doe', 'john.doe@example.com', 1),
-                                                                   ('Alice', 'Smith', 'alice.smith@example.com', 2),
-                                                                   ('Bob', 'Johnson', 'bob.johnson@example.com', 3),
-                                                                   ('Eva', 'Williams', 'eva.williams@example.com', 4);
+-- Добавление связей между студентами и курсами
+INSERT INTO student_course (student_id, course_id)
+VALUES (1, 1),
+       (1, 2),
+       (2, 2),
+       (3, 3);

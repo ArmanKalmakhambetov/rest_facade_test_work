@@ -12,5 +12,8 @@ public interface CourseService {
     Optional<Course> getCourseById(Long id);
 
     Course saveCourse(Course course);
+
     void deleteCourse(Long id);
+
+    Optional<Course> findByNameOfCourse(String name);
 }

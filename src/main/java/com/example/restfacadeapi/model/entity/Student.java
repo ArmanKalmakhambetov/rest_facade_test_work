@@ -3,16 +3,20 @@ package com.example.restfacadeapi.model.entity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @AllArgsConstructor
@@ -34,12 +38,16 @@ public class Student {
     @Column
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY,
-            targetEntity = Course.class,
-            cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "course_id")
-    private Course course;
-
+    @ManyToMany(
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST},
+            targetEntity = Course.class)
+    @JoinTable(
+            name = "student_course",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Course> courses = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -73,12 +81,12 @@ public class Student {
         this.email = email;
     }
 
-    public Course getCourse() {
-        return course;
+    public List<Course> getCourses() {
+        return courses;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
     @Override
@@ -86,12 +94,12 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Objects.equals(id, student.id) && Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName) && Objects.equals(email, student.email) && Objects.equals(course, student.course);
+        return Objects.equals(id, student.id) && Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName) && Objects.equals(email, student.email) && Objects.equals(courses, student.courses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, course);
+        return Objects.hash(id, firstName, lastName, email, courses);
     }
 
     @Override
@@ -101,7 +109,7 @@ public class Student {
                ", firstName='" + firstName + '\'' +
                ", lastName='" + lastName + '\'' +
                ", email='" + email + '\'' +
-               ", course=" + course +
+               ", courses=" + courses +
                '}';
     }
 }

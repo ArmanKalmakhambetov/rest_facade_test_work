@@ -45,4 +45,5 @@ public class StudentRestController {
         studentFacade.deleteStudent(id);
         return new ResponseEntity<>("Student with id = " + id + " was deleted", HttpStatus.OK);
     }
+
 }

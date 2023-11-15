@@ -14,6 +14,6 @@ public interface StudentFacade {
 
     StudentDTO saveStudent(StudentDTO studentDTO);
 
-
     void deleteStudent(Long id);
+
 }
