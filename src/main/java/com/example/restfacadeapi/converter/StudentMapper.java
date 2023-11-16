@@ -13,8 +13,7 @@ public interface StudentMapper {
 
     @Mapping(target = "coursesDTO", source = "courses")
     StudentDTO studentToStudentDTO(Student student);
-
-    @Mapping(target = "courses", ignore = true)
+    
     Student studentDTOToStudent(StudentDTO studentDTO);
 
 }

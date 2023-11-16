@@ -61,7 +61,7 @@ public class StudentFacadeImpl implements StudentFacade {
                 Course course = existingCourse
                         .orElseGet(() -> courseService.saveCourse(CourseMapper.INSTANCE.courseDTOToCourse(courseDTO)));
 
-                // Свяжите студента с курсом
+                // Связать студента с курсом
                 courses.add(course);
             }
 

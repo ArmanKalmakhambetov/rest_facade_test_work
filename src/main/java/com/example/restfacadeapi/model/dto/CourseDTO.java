@@ -1,23 +1,21 @@
 package com.example.restfacadeapi.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.List;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class CourseDTO {
 
     private Long id;
 
     private String nameOfCourse;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("coursesDTO")
     private List<StudentDTO> studentsDTO;
 
     public Long getId() {
@@ -42,5 +40,14 @@ public class CourseDTO {
 
     public void setStudentsDTO(List<StudentDTO> studentsDTO) {
         this.studentsDTO = studentsDTO;
+    }
+
+    @Override
+    public String toString() {
+        return "CourseDTO{" +
+               "id=" + id +
+               ", nameOfCourse='" + nameOfCourse + '\'' +
+               ", studentsDTO=" + studentsDTO +
+               '}';
     }
 }

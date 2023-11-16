@@ -18,7 +18,6 @@ public class StudentServiceImpl implements StudentService {
         this.studentRepository = studentRepository;
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public List<Student> getAllStudents() {

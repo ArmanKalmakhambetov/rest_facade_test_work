@@ -14,7 +14,7 @@ public interface CourseMapper {
     @Mapping(target = "studentsDTO", source = "students")
     CourseDTO courseToCourseDTO(Course course);
 
-    @Mapping(target = "students", ignore = true)
+
     Course courseDTOToCourse(CourseDTO courseDTO);
 }
 
