@@ -35,6 +35,11 @@ public class CourseRestController {
         return new ResponseEntity<>(courseFacade.getCourseById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/student/{studentId}")
+    public ResponseEntity<List<CourseDTO>> getCoursesByStudentId(@PathVariable Long studentId) {
+        return new ResponseEntity<>(courseFacade.getCoursesByStudentId(studentId), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<CourseDTO> saveCourse(@RequestBody CourseDTO courseDTO) {
         return new ResponseEntity<>(courseFacade.saveCourse(courseDTO), HttpStatus.OK);

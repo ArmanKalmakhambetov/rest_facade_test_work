@@ -15,4 +15,5 @@ public interface CourseFacade {
 
     void deleteCourse(Long id);
 
+    List<CourseDTO> getCoursesByStudentId(Long studentId);
 }

@@ -76,4 +76,11 @@ public class StudentFacadeImpl implements StudentFacade {
         studentService.deleteStudent(id);
     }
 
+    @Override
+    public List<StudentDTO> getStudentsByCourseId(Long courseId) {
+        return studentService.getStudentsByCourseId(courseId).stream()
+                .map(StudentMapper.INSTANCE::studentToStudentDTO)
+                .collect(Collectors.toList());
+    }
+
 }

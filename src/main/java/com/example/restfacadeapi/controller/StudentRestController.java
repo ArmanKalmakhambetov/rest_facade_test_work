@@ -35,6 +35,11 @@ public class StudentRestController {
         return new ResponseEntity<>(studentFacade.getStudentById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/course/{courseId}")
+    public ResponseEntity<List<StudentDTO>> getStudentsByCourseId(@PathVariable Long courseId) {
+        return new ResponseEntity<>(studentFacade.getStudentsByCourseId(courseId), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<StudentDTO> saveStudent(@RequestBody StudentDTO studentDTO) {
         return new ResponseEntity<>(studentFacade.saveStudent(studentDTO), HttpStatus.OK);

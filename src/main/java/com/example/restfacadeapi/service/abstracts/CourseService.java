@@ -16,4 +16,7 @@ public interface CourseService {
     void deleteCourse(Long id);
 
     Optional<Course> findByNameOfCourse(String name);
+
+
+    List<Course> getCoursesByStudentId(Long studentId);
 }

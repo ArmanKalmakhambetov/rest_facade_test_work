@@ -44,4 +44,11 @@ public class CourseFacadeImpl implements CourseFacade {
         courseService.deleteCourse(id);
     }
 
+    @Override
+    public List<CourseDTO> getCoursesByStudentId(Long studentId) {
+        return courseService.getCoursesByStudentId(studentId).stream()
+                .map(CourseMapper.INSTANCE::courseToCourseDTO)
+                .collect(Collectors.toList());
+    }
+
 }

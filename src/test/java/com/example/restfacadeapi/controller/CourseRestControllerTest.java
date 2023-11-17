@@ -3,7 +3,7 @@ package com.example.restfacadeapi.controller;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
 
 public class CourseRestControllerTest {
 
@@ -19,15 +19,19 @@ public class CourseRestControllerTest {
     }
 
     @Test
-    public void getAllCoursesWithStudentsDTO_shouldReturn200() {
-
+    public void getCoursesByStudentId_shouldReturnCourses() {
+        Long studentId = 1L;
         given()
+                .pathParam("studentId", studentId)
                 .when()
-                .get(BASE_URL)
+                .get(BASE_URL + "/student/{studentId}")
                 .then()
                 .statusCode(200)
-                .body("studentsDTO", everyItem(notNullValue()));
+                .body("size()", equalTo(2))
+                .body("[0].id", equalTo(1))
+                .body("[1].id", equalTo(2));
     }
+
 
     @Test
     public void getCourseById_shouldReturn200() {

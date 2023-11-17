@@ -16,4 +16,5 @@ public interface StudentFacade {
 
     void deleteStudent(Long id);
 
+    List<StudentDTO> getStudentsByCourseId(Long courseId);
 }

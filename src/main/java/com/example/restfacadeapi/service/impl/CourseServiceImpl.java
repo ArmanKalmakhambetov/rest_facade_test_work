@@ -49,4 +49,10 @@ public class CourseServiceImpl implements CourseService {
         return Optional.ofNullable(courseRepository.findByNameOfCourse(name));
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Course> getCoursesByStudentId(Long studentId) {
+        return courseRepository.findAllByStudents_id(studentId);
+    }
+
 }

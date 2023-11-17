@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
 
 public class StudentRestControllerTest {
 
@@ -18,13 +18,17 @@ public class StudentRestControllerTest {
     }
 
     @Test
-    public void getAllStudentsWithCoursesDTO_shouldReturn200() {
+    public void getStudentsByCourseId_shouldReturnStudents() {
+        Long courseId = 2L;
         given()
+                .pathParam("courseId", courseId)
                 .when()
-                .get(BASE_URL)
+                .get(BASE_URL + "/course/{courseId}")
                 .then()
                 .statusCode(200)
-                .body("coursesDTO", everyItem(notNullValue()));
+                .body("size()", equalTo(2))
+                .body("[0].id", equalTo(1))
+                .body("[1].id", equalTo(3));
     }
 
     @Test
