@@ -19,7 +19,7 @@ public class StudentRestControllerTest {
 
     @Test
     public void getStudentsByCourseId_shouldReturnStudents() {
-        Long courseId = 2L;
+        Long courseId = 1L;
         given()
                 .pathParam("courseId", courseId)
                 .when()
@@ -28,7 +28,13 @@ public class StudentRestControllerTest {
                 .statusCode(200)
                 .body("size()", equalTo(2))
                 .body("[0].id", equalTo(1))
-                .body("[1].id", equalTo(3));
+                .body("[0].firstName", equalTo("Иван"))
+                .body("[0].lastName", equalTo("Иванов"))
+                .body("[0].email", equalTo("ivanov@mail.ru"))
+                .body("[1].id", equalTo(2))
+                .body("[1].firstName", equalTo("Петр"))
+                .body("[1].lastName", equalTo("Петров"))
+                .body("[1].email", equalTo("petrov@mail.ru"));
     }
 
     @Test
@@ -52,13 +58,13 @@ public class StudentRestControllerTest {
                     "email": "ara@mail.ru",
                     "coursesDTO": [
                         {
-                            "nameOfCourse": "Math2"
+                            "nameOfCourse": "Математика2"
                         },
                         {
-                            "nameOfCourse": "Mathematics"
+                            "nameOfCourse": "История"
                         },
                         {
-                            "nameOfCourse": "Physics"
+                            "nameOfCourse": "Физика"
                         }
                     ]
                 }

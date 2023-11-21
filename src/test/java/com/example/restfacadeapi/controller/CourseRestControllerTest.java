@@ -19,8 +19,9 @@ public class CourseRestControllerTest {
     }
 
     @Test
-    public void getCoursesByStudentId_shouldReturnCourses() {
+    public void getCoursesByStudentId_shouldReturnCourseIds() {
         Long studentId = 1L;
+
         given()
                 .pathParam("studentId", studentId)
                 .when()
@@ -29,13 +30,15 @@ public class CourseRestControllerTest {
                 .statusCode(200)
                 .body("size()", equalTo(2))
                 .body("[0].id", equalTo(1))
-                .body("[1].id", equalTo(2));
+                .body("[0].nameOfCourse", equalTo("Информатика"))
+                .body("[1].id", equalTo(2))
+                .body("[1].nameOfCourse", equalTo("Математика"));
     }
 
 
     @Test
     public void getCourseById_shouldReturn200() {
-        Long courseId = 2L;
+        Long courseId = 1L;
         given()
                 .pathParam("id", courseId)
                 .when()
@@ -61,7 +64,7 @@ public class CourseRestControllerTest {
 
     @Test
     public void deleteCourse_shouldReturn200() {
-        Long courseId = 1L;
+        Long courseId = 3L;
         given()
                 .pathParam("id", courseId)
                 .when()
